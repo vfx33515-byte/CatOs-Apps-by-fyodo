@@ -1,0 +1,61 @@
+name: Generate Index Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate Dynamic index.json
+        shell: python
+        run: |
+          import os
+          import json
+
+          apps_dir = 'apps'
+          apps_list = []
+          
+          # Проверяем наличие папки apps в репозитории
+          if os.path.exists(apps_dir):
+              # Ищем все файлы .cat
+              files = [f for f in os.listdir(apps_dir) if f.endswith('.cat')]
+              for f_name in files:
+                  apps_list.append({
+                      "name": f_name.replace('.cat', '').replace('_', ' ').capitalize(),
+                      "file": f"apps/{f_name}",
+                      "desc": f"Приложение {f_name}"
+                  })
+
+          data = {
+              "version": 1,
+              "apps": apps_list
+          }
+
+          with open('index.json', 'w', encoding='utf-8') as f:
+              json.dump(data, f, ensure_ascii=False, indent=4)
+
+      - name: Zip Apps Folder
+        run: zip -r apps.zip apps/ 
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            index.json
+            apps.zip
+          body: "Автоматически сгенерированный индекс приложений."
+          tag_name: ${{ github.ref_name }} 
+          overwrite: true 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
