@@ -1,0 +1,16 @@
+#name "Шар Судьбы"
+#icon {0x00, 0x7E, 0x81, 0x81, 0x91, 0x91, 0x91, 0x81, 0x81, 0x7E, 0x00}
+
+cls
+random 1 4 ans
+
+if ans == 1
+    print "ДА"
+if ans == 2
+    print "НЕТ"
+if ans == 3
+    print "МОЖЕТ"
+if ans == 4
+    print "НЕ СТОИТ"
+
+wait_key
