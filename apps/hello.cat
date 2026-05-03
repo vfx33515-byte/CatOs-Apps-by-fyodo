@@ -1,0 +1,10 @@
+#name "Hello World"
+ 
+clear
+set_cursor 0 3
+print "Hello CatOS!"
+set_cursor 0 5
+print "From App Store"
+update
+delay 3000
+exit
