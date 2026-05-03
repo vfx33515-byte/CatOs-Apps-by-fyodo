@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "apps": [
+    {
+      "name": "Hello World",
+      "file": "apps/hello.cat",
+      "desc": "Первая прога vfx33"
+    },
+    {
+      "name": "Mega Clicker",
+      "file": "apps/clicker.cat",
+      "desc": "Кликай или умри"
+    }
+  ]
+}
