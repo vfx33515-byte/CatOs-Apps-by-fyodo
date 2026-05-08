@@ -1,15 +1,7 @@
 #name "Magic Ball"
-
 cls
-random 1 4 ans
-
-if ans == 1
-    print "ДА"
-if ans == 2
-    print "НЕТ"
-if ans == 3
-    print "МОЖЕТ"
-if ans == 4
-    print "НЕ СТОИТ"
-
+print "Нажми кнопку..."
+wait_key
+cls
+print "ОТВЕТ: ДА"
 wait_key
