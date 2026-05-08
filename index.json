@@ -15,11 +15,6 @@
             "name": "Magic Ball",
             "file": "apps/MagickBall.cat",
             "desc": "Шар судьбы"
-        },
-        {
-            "name": "tester",
-            "file": "apps/test.txt",
-            "desc": "test to txt"
         }
     ]
 }
